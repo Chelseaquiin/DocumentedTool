@@ -1,0 +1,49 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "DocumentationTools.UI/1.0.0": {
+        "dependencies": {
+          "DocumentationTools.BLL": "1.0.0"
+        },
+        "runtime": {
+          "DocumentationTools.UI.dll": {}
+        }
+      },
+      "DocumentationTools.BLL/1.0.0": {
+        "dependencies": {
+          "DocumentationTools.Data": "1.0.0"
+        },
+        "runtime": {
+          "DocumentationTools.BLL.dll": {}
+        }
+      },
+      "DocumentationTools.Data/1.0.0": {
+        "runtime": {
+          "DocumentationTools.Data.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DocumentationTools.UI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DocumentationTools.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DocumentationTools.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

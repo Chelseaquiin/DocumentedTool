@@ -1,0 +1,13 @@
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\bin\Debug\netstandard2.1\DocumentationTools.BLL.deps.json
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\bin\Debug\netstandard2.1\DocumentationTools.BLL.dll
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\bin\Debug\netstandard2.1\DocumentationTools.BLL.pdb
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\bin\Debug\netstandard2.1\DocumentationTools.Data.dll
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\bin\Debug\netstandard2.1\DocumentationTools.Data.pdb
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\obj\Debug\netstandard2.1\DocumentationTools.BLL.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\obj\Debug\netstandard2.1\DocumentationTools.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\obj\Debug\netstandard2.1\DocumentationTools.BLL.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\obj\Debug\netstandard2.1\DocumentationTools.BLL.AssemblyInfo.cs
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\obj\Debug\netstandard2.1\DocumentationTools.BLL.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\obj\Debug\netstandard2.1\DocumentationTools.BLL.csproj.CopyComplete
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\obj\Debug\netstandard2.1\DocumentationTools.BLL.dll
+C:\Users\user\source\repos\DocumentationTools\DocumentationTools\obj\Debug\netstandard2.1\DocumentationTools.BLL.pdb
