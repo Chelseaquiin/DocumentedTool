@@ -2,7 +2,7 @@
 
 namespace DocumentationTools.Data.Domain
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Enum | AttributeTargets.All, Inherited = false)]
+    [AttributeUsage(AttributeTargets.All, Inherited = false)]
     public sealed class DocumentAttribute : Attribute
     {
         public string Description { get; set; }

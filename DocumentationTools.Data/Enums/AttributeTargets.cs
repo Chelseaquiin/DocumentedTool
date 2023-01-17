@@ -3,8 +3,8 @@
     public enum AttributeTargets
     {
 
-        All, Assembly, Class, Method, Parameter, Constructor,
-        Property, Enum, Interface, ReturnValue
+        All, Assembly, Class, Method, Constructor,
+        Property, Enum, Interface,
 
     }
 }

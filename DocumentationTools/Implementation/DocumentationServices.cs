@@ -10,7 +10,7 @@ namespace DocumentationTools.BLL.Implementation
 
     public class DocumentationServices : IDocumentationServices
     {
-        public static void ViewClasses(Type t)
+        public void ViewClasses(Type t)
         {
 
             Console.WriteLine($"Assembly: {Assembly.GetExecutingAssembly().FullName}\nClass: {t.Name}");
@@ -26,7 +26,7 @@ namespace DocumentationTools.BLL.Implementation
 
             }
         }
-        public static void ViewProperties(Type t)
+        public void ViewProperties(Type t)
         {
 
             PropertyInfo[] propertyInfo = t.GetProperties();
@@ -39,7 +39,7 @@ namespace DocumentationTools.BLL.Implementation
                 foreach (var property in properties)
                 {
                     DocumentAttribute doc = new DocumentAttribute();
-                    Console.WriteLine($"Description:{doc.Description}");
+                    Console.WriteLine($"Method Name: {propertyInfo[i].Name}\nDescription:{doc.Description}");
                 }
             }
         }
@@ -57,12 +57,12 @@ namespace DocumentationTools.BLL.Implementation
                 foreach (var constructor in constructors)
                 {
                     DocumentAttribute doc = new DocumentAttribute();
-                    Console.WriteLine($"Description:{doc.Description}");
+                    Console.WriteLine($"Method Name: {constInfo[i].Name}\nDescription:{doc.Description}");
                 }
             }
         }
 
-            public void ListMethods(Type t)
+        public void ViewMethods(Type t)
         {
 
             MethodInfo[] methodInfo = t.GetMethods();
@@ -75,22 +75,12 @@ namespace DocumentationTools.BLL.Implementation
                 foreach (var method in methods)
                 {
                     DocumentAttribute doc = new DocumentAttribute();
-                    Console.WriteLine($"Description:{doc.Description}, Input: {doc.Input}, Output: {doc.Output}");
+                    Console.WriteLine($"Method Name: {methodInfo[i].Name}\nDescription: {doc.Description}\nInput: {doc.Input}\nOutput: {doc.Output}");
                 }
             }
         }
 
-        public void ListProperties(Type t)
-        {
-            Console.WriteLine("Property Details");
-
-            PropertyInfo[] properties = t.GetProperties();
-            foreach (PropertyInfo property in properties)
-            {
-                Console.WriteLine($"Name: {property.Name}, Attributes: {property.Attributes}");
-            }
-        }
-        public void ListFields(Type t)
+        public void ViewFields(Type t)
         {
 
             FieldInfo[] fieldInfo = t.GetFields();
@@ -100,26 +90,27 @@ namespace DocumentationTools.BLL.Implementation
                 var fields = fieldInfo[i].GetCustomAttributes(true)
                                  .Where(a => a is DocumentAttribute);
 
-                foreach (var property in fields)
+                foreach (var f in fields)
                 {
                     DocumentAttribute doc = new DocumentAttribute();
-                    Console.WriteLine($"Description:{doc.Description}");
+                    Console.WriteLine($"FieldName: {fieldInfo[i].Name}\n Description: {doc.Description}");
                 }
             }
         }
-        public void ListStats(Type t)
+        public void ViewStats(Type t)
         {
             Console.WriteLine($"Base class: {t.BaseType}\nIs type enum? {t.IsEnum}\nIs type interface? {t.IsInterface}\nIs type class? {t.IsClass} ");
         }
-        
+
         public void GetDoc(Type t)
         {
-            ListConstructors(t);
-            ListFields(t);
-            ListMethods(t);
-            ListProperties(t);
-            ListStats(t);
+            ViewClasses(t);
+            ViewConstructors(t);
+            ViewFields(t);
+            ViewMethods(t);
+            ViewProperties(t);
+            ViewStats(t);
 
         }
-    }
+    } 
 }
