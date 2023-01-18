@@ -10,6 +10,7 @@ namespace DocumentationTools.BLL.Implementation
 
     public class DocumentationServices : IDocumentationServices
     {
+        DocumentAttribute _doc = new DocumentAttribute();
         public void ViewClasses(Type t)
         {
 
@@ -21,8 +22,8 @@ namespace DocumentationTools.BLL.Implementation
 
             foreach (var attribute in attributes)
             {
-                DocumentAttribute doc = new DocumentAttribute();
-                Console.WriteLine($"Description:{doc.Description}");
+               
+                Console.WriteLine($"Description:{_doc.Description}");
 
             }
         }
@@ -31,15 +32,14 @@ namespace DocumentationTools.BLL.Implementation
 
             PropertyInfo[] propertyInfo = t.GetProperties();
 
-            for (int i = (int)Numbers.Number; i < propertyInfo.GetLength(0); i++)
+            for (int i = (int)Numbers.Number; i < propertyInfo.Length; i++)
             {
                 var properties = propertyInfo[i].GetCustomAttributes(true)
                                  .Where(a => a is DocumentAttribute);
 
                 foreach (var property in properties)
                 {
-                    DocumentAttribute doc = new DocumentAttribute();
-                    Console.WriteLine($"Method Name: {propertyInfo[i].Name}\nDescription:{doc.Description}");
+                    Console.WriteLine($"Method Name: {propertyInfo[i].Name}\nDescription:{_doc.Description}");
                 }
             }
         }
@@ -49,15 +49,14 @@ namespace DocumentationTools.BLL.Implementation
 
             ConstructorInfo[] constInfo = t.GetConstructors();
 
-            for (int i = (int)Numbers.Number; i < constInfo.GetLength(0); i++)
+            for (int i = (int)Numbers.Number; i < constInfo.Length; i++)
             {
                 var constructors = constInfo[i].GetCustomAttributes(true)
                                  .Where(a => a is DocumentAttribute);
 
                 foreach (var constructor in constructors)
                 {
-                    DocumentAttribute doc = new DocumentAttribute();
-                    Console.WriteLine($"Method Name: {constInfo[i].Name}\nDescription:{doc.Description}");
+                    Console.WriteLine($"Method Name: {constInfo[i].Name}\nDescription:{_doc.Description}");
                 }
             }
         }
@@ -67,15 +66,14 @@ namespace DocumentationTools.BLL.Implementation
 
             MethodInfo[] methodInfo = t.GetMethods();
 
-            for (int i = (int)Numbers.Number; i < methodInfo.GetLength(0); i++)
+            for (int i = (int)Numbers.Number; i < methodInfo.Length; i++)
             {
                 var methods = methodInfo[i].GetCustomAttributes(true)
                                  .Where(a => a is DocumentAttribute);
 
                 foreach (var method in methods)
                 {
-                    DocumentAttribute doc = new DocumentAttribute();
-                    Console.WriteLine($"Method Name: {methodInfo[i].Name}\nDescription: {doc.Description}\nInput: {doc.Input}\nOutput: {doc.Output}");
+                    Console.WriteLine($"Method Name: {methodInfo[i].Name}\nDescription: {_doc.Description}\nInput: {_doc.Input}\nOutput: {_doc.Output}");
                 }
             }
         }
@@ -85,15 +83,14 @@ namespace DocumentationTools.BLL.Implementation
 
             FieldInfo[] fieldInfo = t.GetFields();
 
-            for (int i = (int)Numbers.Number; i < fieldInfo.GetLength(0); i++)
+            for (int i = (int)Numbers.Number; i < fieldInfo.Length; i++)
             {
                 var fields = fieldInfo[i].GetCustomAttributes(true)
                                  .Where(a => a is DocumentAttribute);
 
                 foreach (var f in fields)
                 {
-                    DocumentAttribute doc = new DocumentAttribute();
-                    Console.WriteLine($"FieldName: {fieldInfo[i].Name}\n Description: {doc.Description}");
+                    Console.WriteLine($"FieldName: {fieldInfo[i].Name}\n Description: {_doc.Description}");
                 }
             }
         }
