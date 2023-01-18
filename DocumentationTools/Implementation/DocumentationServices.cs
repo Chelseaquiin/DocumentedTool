@@ -23,11 +23,9 @@ namespace DocumentationTools.BLL.Implementation
                 switch (attribute)
                 {
                     case DocumentAttribute _doc:
-                        Console.WriteLine($"Description:{_doc.Description}");
+                        Console.WriteLine($"\nDescription:{_doc.Description}");
                         break;
                 }
-                
-
             }
         }
         public void ViewProperties(Type t)
@@ -42,7 +40,7 @@ namespace DocumentationTools.BLL.Implementation
                     switch (attr)
                     {
                         case DocumentAttribute docAttribute:
-                            Console.WriteLine($"{properties[i].Name}\nDescription:\n\t{docAttribute.Description}");
+                            Console.WriteLine($"\nProperties: {properties[i].Name}\nDescription:\n\t{docAttribute.Description}");
                             break;
                     }
                 }
@@ -62,7 +60,7 @@ namespace DocumentationTools.BLL.Implementation
                     switch (attr)
                     {
                         case DocumentAttribute docAttribute:
-                            Console.WriteLine($"{constInfo[i].Name}\nDescription:\n\t{docAttribute.Description}");
+                            Console.WriteLine($"\nConstructor: {constInfo[i].Name}\nDescription:\n\t{docAttribute.Description}");
                             break;
                     }
                 }
@@ -83,7 +81,7 @@ namespace DocumentationTools.BLL.Implementation
                     switch (method)
                     {
                         case DocumentAttribute doc:
-                            Console.WriteLine($"Method Name: {methodInfo[i].Name}\nDescription: {_doc.Description}\nInput: {_doc.Input}\nOutput: {_doc.Output}");
+                            Console.WriteLine($"\nMethod Name: {methodInfo[i].Name}\nDescription: {_doc.Description}\nInput: {_doc.Input}\nOutput: {_doc.Output}");
                             break;
                     }
                 }
@@ -104,32 +102,24 @@ namespace DocumentationTools.BLL.Implementation
                     switch (field)
                     {
                         case DocumentAttribute _doc:
-                            Console.WriteLine($"FieldName: {fieldInfo[i].Name}\n Description: {_doc.Description}");
+                            Console.WriteLine($"\nFieldName: {fieldInfo[i].Name}\n Description: {_doc.Description}");
                             break;
                     }
-
-                    
                 }
             }
         }
         public void ViewStats(Type t)
         {
-            Console.WriteLine($"Base class: {t.BaseType}\nIs type enum? {t.IsEnum}\nIs type interface? {t.IsInterface}\nIs type class? {t.IsClass} ");
+            Console.WriteLine($"\nBase class: {t.BaseType}\nIs type enum? {t.IsEnum}\nIs type interface? {t.IsInterface}\nIs type class? {t.IsClass} ");
         }
 
         public void GetDoc(Type t)
         {
             ViewClasses(t);
-            Console.WriteLine();
             ViewConstructors(t);
-            Console.WriteLine();
-            Console.WriteLine();
             ViewFields(t);
-            Console.WriteLine();
             ViewMethods(t);
-            Console.WriteLine();
             ViewProperties(t);
-            Console.WriteLine();
             ViewStats(t);
 
         }
