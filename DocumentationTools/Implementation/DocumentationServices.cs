@@ -16,30 +16,35 @@ namespace DocumentationTools.BLL.Implementation
 
             Console.WriteLine($"Assembly: {Assembly.GetExecutingAssembly().FullName}\nClass: {t.Name}");
 
-            var attributes = t.GetCustomAttributes(true)
-                             .Where(a => a is DocumentAttribute);
-
+            var attributes = t.GetCustomAttributes(true).ToArray();
 
             foreach (var attribute in attributes)
             {
-               
-                Console.WriteLine($"Description:{_doc.Description}");
+                switch (attribute)
+                {
+                    case DocumentAttribute _doc:
+                        Console.WriteLine($"Description:{_doc.Description}");
+                        break;
+                }
+                
 
             }
         }
         public void ViewProperties(Type t)
         {
-
-            PropertyInfo[] propertyInfo = t.GetProperties();
-
-            for (int i = (int)Numbers.Number; i < propertyInfo.Length; i++)
+            PropertyInfo[] properties = t.GetProperties();
+            for (int i = (int)Numbers.Number; i < properties.Length; i++)
             {
-                var properties = propertyInfo[i].GetCustomAttributes(true)
-                                 .Where(a => a is DocumentAttribute);
+                object[] propAttr = properties[i].GetCustomAttributes(true).ToArray();
 
-                foreach (var property in properties)
+                foreach (Attribute attr in propAttr)
                 {
-                    Console.WriteLine($"Method Name: {propertyInfo[i].Name}\nDescription:{_doc.Description}");
+                    switch (attr)
+                    {
+                        case DocumentAttribute docAttribute:
+                            Console.WriteLine($"{properties[i].Name}\nDescription:\n\t{docAttribute.Description}");
+                            break;
+                    }
                 }
             }
         }
@@ -48,15 +53,18 @@ namespace DocumentationTools.BLL.Implementation
         {
 
             ConstructorInfo[] constInfo = t.GetConstructors();
-
             for (int i = (int)Numbers.Number; i < constInfo.Length; i++)
             {
-                var constructors = constInfo[i].GetCustomAttributes(true)
-                                 .Where(a => a is DocumentAttribute);
+                object[] propAttr = constInfo[i].GetCustomAttributes(true).ToArray();
 
-                foreach (var constructor in constructors)
+                foreach (Attribute attr in propAttr)
                 {
-                    Console.WriteLine($"Method Name: {constInfo[i].Name}\nDescription:{_doc.Description}");
+                    switch (attr)
+                    {
+                        case DocumentAttribute docAttribute:
+                            Console.WriteLine($"{constInfo[i].Name}\nDescription:\n\t{docAttribute.Description}");
+                            break;
+                    }
                 }
             }
         }
@@ -68,12 +76,16 @@ namespace DocumentationTools.BLL.Implementation
 
             for (int i = (int)Numbers.Number; i < methodInfo.Length; i++)
             {
-                var methods = methodInfo[i].GetCustomAttributes(true)
-                                 .Where(a => a is DocumentAttribute);
+                var methods = methodInfo[i].GetCustomAttributes(true).ToArray();
 
                 foreach (var method in methods)
                 {
-                    Console.WriteLine($"Method Name: {methodInfo[i].Name}\nDescription: {_doc.Description}\nInput: {_doc.Input}\nOutput: {_doc.Output}");
+                    switch (method)
+                    {
+                        case DocumentAttribute doc:
+                            Console.WriteLine($"Method Name: {methodInfo[i].Name}\nDescription: {_doc.Description}\nInput: {_doc.Input}\nOutput: {_doc.Output}");
+                            break;
+                    }
                 }
             }
         }
@@ -85,12 +97,18 @@ namespace DocumentationTools.BLL.Implementation
 
             for (int i = (int)Numbers.Number; i < fieldInfo.Length; i++)
             {
-                var fields = fieldInfo[i].GetCustomAttributes(true)
-                                 .Where(a => a is DocumentAttribute);
+                var fields = fieldInfo[i].GetCustomAttributes(true).ToArray();
 
-                foreach (var f in fields)
+                foreach (var field in fields)
                 {
-                    Console.WriteLine($"FieldName: {fieldInfo[i].Name}\n Description: {_doc.Description}");
+                    switch (field)
+                    {
+                        case DocumentAttribute _doc:
+                            Console.WriteLine($"FieldName: {fieldInfo[i].Name}\n Description: {_doc.Description}");
+                            break;
+                    }
+
+                    
                 }
             }
         }
@@ -102,10 +120,16 @@ namespace DocumentationTools.BLL.Implementation
         public void GetDoc(Type t)
         {
             ViewClasses(t);
+            Console.WriteLine();
             ViewConstructors(t);
+            Console.WriteLine();
+            Console.WriteLine();
             ViewFields(t);
+            Console.WriteLine();
             ViewMethods(t);
+            Console.WriteLine();
             ViewProperties(t);
+            Console.WriteLine();
             ViewStats(t);
 
         }

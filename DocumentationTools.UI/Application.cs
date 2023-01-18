@@ -1,4 +1,7 @@
 ﻿using DocumentationTools.BLL.Implementation;
+using DocumentationTools.BLL.Interfaces;
+using DocumentationTools.Data.Domain;
+using DocumentationTools.Data.Enums;
 
 namespace DocumentationTools.UI
 {
@@ -7,30 +10,12 @@ namespace DocumentationTools.UI
         public void Start()
         {
             DocumentationServices doc = new DocumentationServices();
+                    
+            doc.GetDoc(typeof(AlphabetsAndValues));
+            doc.GetDoc(typeof(EncryptAndDecryptServices));
+            doc.GetDoc(typeof(Numbers));
+            doc.GetDoc(typeof(IEncryptAndDecryptServices));
 
-            string typeName = "";
-            do
-            {
-                Console.WriteLine("\nEnter a type name to evaluate");
-                Console.Write("or enter Q to quit: ");
-          
-                typeName = Console.ReadLine();
-
-                if (typeName.Equals("Q", StringComparison.OrdinalIgnoreCase))
-                {
-                    break;
-                }
-                try
-                {
-                    Type t = Type.GetType(typeName);
-                    Console.WriteLine("");
-                    doc.GetDoc(t);
-                }
-                catch
-                {
-                    Console.WriteLine("Sorry, can't find type");
-                }
-            } while (true);
 
         }
     }
