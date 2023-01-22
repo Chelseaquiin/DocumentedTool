@@ -8,10 +8,10 @@ using System.Reflection;
 namespace DocumentationTools.BLL.Implementation
 {
 
-    public class DocumentationServices : IDocumentationServices
+    public class DocumentationServices /*: IDocumentationServices*/
     {
-        DocumentAttribute _doc = new DocumentAttribute();
-        public void ViewClasses(Type t)
+        /*static DocumentAttribute _doc = new DocumentAttribute();*/
+        public static void ViewClasses(Type t)
         {
 
             Console.WriteLine($"Assembly: {Assembly.GetExecutingAssembly().FullName}\nClass: {t.Name}");
@@ -28,7 +28,7 @@ namespace DocumentationTools.BLL.Implementation
                 }
             }
         }
-        public void ViewProperties(Type t)
+        public static void ViewProperties(Type t)
         {
             PropertyInfo[] properties = t.GetProperties();
             for (int i = (int)Numbers.Number; i < properties.Length; i++)
@@ -47,7 +47,7 @@ namespace DocumentationTools.BLL.Implementation
             }
         }
 
-        public void ViewConstructors(Type t)
+        public static void ViewConstructors(Type t)
         {
 
             ConstructorInfo[] constInfo = t.GetConstructors();
@@ -67,7 +67,7 @@ namespace DocumentationTools.BLL.Implementation
             }
         }
 
-        public void ViewMethods(Type t)
+        public static void ViewMethods(Type t)
         {
 
             MethodInfo[] methodInfo = t.GetMethods();
@@ -81,14 +81,14 @@ namespace DocumentationTools.BLL.Implementation
                     switch (method)
                     {
                         case DocumentAttribute doc:
-                            Console.WriteLine($"\nMethod Name: {methodInfo[i].Name}\nDescription: {_doc.Description}\nInput: {_doc.Input}\nOutput: {_doc.Output}");
+                            Console.WriteLine($"\nMethod Name: {methodInfo[i].Name}\nDescription: {doc.Description}\nInput: {doc.Input}\nOutput: {doc.Output}");
                             break;
                     }
                 }
             }
         }
 
-        public void ViewFields(Type t)
+        public static void ViewFields(Type t)
         {
 
             FieldInfo[] fieldInfo = t.GetFields();
@@ -108,12 +108,12 @@ namespace DocumentationTools.BLL.Implementation
                 }
             }
         }
-        public void ViewStats(Type t)
+        public static void ViewStats(Type t)
         {
             Console.WriteLine($"\nBase class: {t.BaseType}\nIs type enum? {t.IsEnum}\nIs type interface? {t.IsInterface}\nIs type class? {t.IsClass} ");
         }
 
-        public void GetDoc(Type t)
+        public static void GetDoc(Type t)
         {
             ViewClasses(t);
             ViewConstructors(t);
