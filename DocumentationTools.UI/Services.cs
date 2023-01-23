@@ -1,20 +1,16 @@
-﻿using DocumentationTools.BLL.Interfaces;
-using DocumentationTools.Data.Domain;
+﻿using DocumentationTools.Data.Domain;
 using DocumentationTools.Data.Enums;
-using System;
-using System.Linq;
 using System.Reflection;
 
-namespace DocumentationTools.BLL.Implementation
+namespace DocumentationTools.UI
 {
-
-    public class DocumentationServices /*: IDocumentationServices*/
+    internal class Services
     {
-        /*static DocumentAttribute _doc = new DocumentAttribute();*/
+        static string output;
         public static void ViewClasses(Type t)
         {
 
-            Console.WriteLine($"Assembly: {Assembly.GetExecutingAssembly().FullName}\nClass: {t.Name}");
+            Console.WriteLine($"\nAssembly: {Assembly.GetAssembly(t).FullName}\nClass: {t.Name}");
 
             var attributes = t.GetCustomAttributes(true).ToArray();
 
@@ -23,7 +19,7 @@ namespace DocumentationTools.BLL.Implementation
                 switch (attribute)
                 {
                     case DocumentAttribute _doc:
-                        Console.WriteLine($"\nDescription:{_doc.Description}");
+                        output = $"\nDescription:{_doc.Description}";
                         break;
                 }
             }
@@ -40,7 +36,7 @@ namespace DocumentationTools.BLL.Implementation
                     switch (attr)
                     {
                         case DocumentAttribute docAttribute:
-                            Console.WriteLine($"\nProperties: {properties[i].Name}\nDescription:\n\t{docAttribute.Description}");
+                            output += $"\nProperties: {properties[i].Name}\n\tDescription: {docAttribute.Description}";
                             break;
                     }
                 }
@@ -60,7 +56,7 @@ namespace DocumentationTools.BLL.Implementation
                     switch (attr)
                     {
                         case DocumentAttribute docAttribute:
-                            Console.WriteLine($"\nConstructor: {constInfo[i].Name}\nDescription:\n\t{docAttribute.Description}");
+                            output += $"\nConstructor: {constInfo[i].Name}\n\tDescription: {docAttribute.Description}";
                             break;
                     }
                 }
@@ -81,7 +77,7 @@ namespace DocumentationTools.BLL.Implementation
                     switch (method)
                     {
                         case DocumentAttribute doc:
-                            Console.WriteLine($"\nMethod Name: {methodInfo[i].Name}\nDescription: {doc.Description}\nInput: {doc.Input}\nOutput: {doc.Output}");
+                            output += $"\nMethod Name: {methodInfo[i].Name}\n\tDescription: {doc.Description}\n\tInput: {doc.Input}\n\tOutput: {doc.Output}";
                             break;
                     }
                 }
@@ -102,7 +98,8 @@ namespace DocumentationTools.BLL.Implementation
                     switch (field)
                     {
                         case DocumentAttribute _doc:
-                            Console.WriteLine($"\nFieldName: {fieldInfo[i].Name}\n Description: {_doc.Description}");
+
+                            output += $"\nFieldName: {fieldInfo[i].Name}\n\t Description: {_doc.Description}";
                             break;
                     }
                 }
@@ -110,19 +107,50 @@ namespace DocumentationTools.BLL.Implementation
         }
         public static void ViewStats(Type t)
         {
-            var result = $"\nBase class: {t.BaseType}\nIs type enum? {t.IsEnum}\nIs type interface? {t.IsInterface}\nIs type class? {t.IsClass} ";
-            
+            output += $"\nBase class: {t.BaseType}\n\tIs type enum? {t.IsEnum}\n\tIs type interface? {t.IsInterface}\n\tIs type class? {t.IsClass} ";
+
         }
 
         public static void GetDoc(Type t)
         {
-            ViewClasses(t);
-            ViewConstructors(t);
-            ViewFields(t);
-            ViewMethods(t);
-            ViewProperties(t);
-            ViewStats(t);
+            if (t.IsClass)
+            {
+                ViewClasses(t);
+                ViewConstructors(t);
+                ViewFields(t);
+                ViewMethods(t);
+                ViewProperties(t);
+                ViewStats(t);
 
+                
+            }
+            if (t.IsEnum)
+            {
+                Console.WriteLine($"\nEnum: {t.Name}");
+                string[] names = t.GetEnumNames();
+                foreach (string name in names)
+                {
+                    Console.WriteLine(name);
+
+                }
+                Console.WriteLine();
+
+                ViewStats(t);
+            } 
+            
+            
+            if(t.IsInterface)
+            {
+                Console.WriteLine($"Interface: {t.Name}");
+                ViewMethods(t);
+            }
+
+            TextFormat.ConvertToText(output);
+            TextFormat.ReadAllString();
         }
-    } 
+        
+       
+    }
+     
+        
 }

@@ -11,17 +11,20 @@ namespace DocumentationTools.UI
     {
         public void Start()
         {
-            EncryptAndDecryptServices ead = new EncryptAndDecryptServices();
-            AlphabetsAndValues av = new AlphabetsAndValues();
+ 
+            Services.GetDoc(typeof(AlphabetsAndValues));
+            Services.GetDoc(typeof(EncryptAndDecryptServices));
+            Services.GetDoc(typeof(Numbers));
+            Services.GetDoc(typeof(IEncryptAndDecryptServices));
 
-            SerializeAndDeserialize.SaveAsJsonFormat(ead, "EADMethods.Json" );
-            SerializeAndDeserialize.SaveAsJsonFormat(av, "AlphabetsAndValues.Json");
+           
+           /* TextFormat.ConvertToText(typeof(AlphabetsAndValues));
+            TextFormat.ConvertToText(typeof(EncryptAndDecryptServices));
+            TextFormat.ConvertToText(typeof(Numbers));
+            TextFormat.ConvertToText(typeof(IEncryptAndDecryptServices));*/
+            //string jsonString = JsonSerializer.Serialize(DocumentationServices.GetDoc(typeof(AlphabetsAndValues)));
 
-            DocumentationServices.GetDoc(typeof(AlphabetsAndValues));
-            DocumentationServices.GetDoc(typeof(EncryptAndDecryptServices));
-            DocumentationServices.GetDoc(typeof(Numbers));
-            DocumentationServices.GetDoc(typeof(IEncryptAndDecryptServices));
-
+            
 
         }
     }
