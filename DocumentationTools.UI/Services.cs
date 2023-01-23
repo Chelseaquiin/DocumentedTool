@@ -146,7 +146,9 @@ namespace DocumentationTools.UI
             }
 
             TextFormat.ConvertToText(output);
+            TextFormat.ConvertToJson(output);
             TextFormat.ReadAllString();
+            
         }
         
        
